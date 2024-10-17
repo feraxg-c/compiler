@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+
+
+fn parsing_token_to_ast(){
+
+=======
 use crate::compiler::lexer::token::Token;
 use crate::compiler::parser::ast::Expr;
 
@@ -62,4 +68,5 @@ fn parser_to_ast(tokens: Vec<Token>) -> Vec<Expr> {
     }
 
     expr // Возвращаем собранные выражения
+>>>>>>> 0b75cfab27fcd10ead4c1faef6dc94aa15a84199
 }

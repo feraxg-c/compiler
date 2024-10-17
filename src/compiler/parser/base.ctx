@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 typedef enum {
@@ -9,3 +10,16 @@ typedef struct {
     bool_enum value;
 } Bool;
 
+=======
+
+
+typedef enum {
+    BOOL_FALSE = 0,
+    BOOL_TRUE = 1
+} bool_enum;
+
+typedef struct {
+    bool_enum value;
+} Bool;
+
+>>>>>>> 0b75cfab27fcd10ead4c1faef6dc94aa15a84199
