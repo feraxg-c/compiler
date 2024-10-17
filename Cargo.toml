@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 [package]
 name = "compiler"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+=======
+[package]
+name = "compiler"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+>>>>>>> 9c061fd5b3ab1734c3f3d1c060b92ee7df528ba4

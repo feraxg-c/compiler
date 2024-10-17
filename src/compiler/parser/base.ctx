@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 9c061fd5b3ab1734c3f3d1c060b92ee7df528ba4
 
 
 typedef enum {
@@ -9,3 +13,19 @@ typedef struct {
     bool_enum value;
 } Bool;
 
+<<<<<<< HEAD
+=======
+=======
+
+
+typedef enum {
+    BOOL_FALSE = 0,
+    BOOL_TRUE = 1
+} bool_enum;
+
+typedef struct {
+    bool_enum value;
+} Bool;
+
+>>>>>>> 0b75cfab27fcd10ead4c1faef6dc94aa15a84199
+>>>>>>> 9c061fd5b3ab1734c3f3d1c060b92ee7df528ba4
