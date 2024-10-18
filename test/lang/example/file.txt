@@ -1,0 +1,19 @@
+2+23;
+{
+find;
+}
+
+fn just(type: i32){
+    println("{type}");
+}
+
+
+ptr "main" fn main() {
+
+}
+
+ptr "CInsert" fn sort(){
+
+}
+
+

@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 9c061fd5b3ab1734c3f3d1c060b92ee7df528ba4
+
+
 use std::fs::File;
 use std::io::{self, BufRead, BufReader};
 
@@ -19,24 +17,4 @@ pub fn read_file_to_string(file_path: &str) -> Result<String, io::Error> {
     }
 
     Ok(result_line) // Возвращаем результат
-<<<<<<< HEAD
-=======
-=======
-use std::fs::File;
-use std::io::{self, BufRead, BufReader};
-
-fn read_to_string(file_path: &str){
-    let mut result_line = String::new();
-    let file = File::open(file_path);
-    let buffer = BufReader::new(file);
-
-    // чтение файла построчно
-    for line in buffer.lines() {
-        // обрабатываем каждую строку
-        let line = line?;
-        result_line.push_str(&*line);
-        result_line.push('\n')
-    }
->>>>>>> 0b75cfab27fcd10ead4c1faef6dc94aa15a84199
->>>>>>> 9c061fd5b3ab1734c3f3d1c060b92ee7df528ba4
 }
