@@ -1,11 +1,11 @@
 
-struct IntLang{
+pub struct Int32Lang{
     val: i32
 }
 
-impl IntLang {
-    fn new(val: i32) -> IntLang {
-        IntLang {
+impl Int32Lang {
+    pub(crate) fn new(val: i32) -> Int32Lang {
+        Int32Lang {
             val
         }
     }

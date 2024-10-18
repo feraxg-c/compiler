@@ -1,11 +1,11 @@
 
-struct IntLang{
+pub struct Int16Lang{
     val: i16
 }
 
-impl IntLang {
-    fn new(val: i16) -> IntLang {
-        IntLang {
+impl Int16Lang {
+    pub fn new(val: i16) -> Int16Lang {
+        Int16Lang {
             val
         }
     }

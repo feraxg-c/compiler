@@ -8,5 +8,6 @@ pub mod none_lang;
 pub mod type_compress;
 pub mod float;
 pub mod int;
+mod uint;
 
 

@@ -1,10 +1,10 @@
 
 pub struct CharLang {
-    val: char
+    pub(crate) val: char
 }
 
 impl CharLang {
-    fn new(val: char) -> CharLang {
+    pub fn new(val: char) -> CharLang {
         CharLang {
             val
         }

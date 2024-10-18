@@ -1,10 +1,10 @@
 
-struct Float64Lang {
+pub struct Float64Lang {
     val: f64
 }
 
 impl Float64Lang {
-    fn new(val: f64) -> Float64Lang {
+    pub(crate) fn new(val: f64) -> Float64Lang {
         Float64Lang {
             val
         }

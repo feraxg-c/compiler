@@ -1,11 +1,11 @@
 
-struct IntLang{
-    val: i32
+pub struct Float32Lang{
+    val: f32
 }
 
-impl IntLang {
-    fn new(val: i32) -> IntLang {
-        IntLang {
+impl Float32Lang {
+    pub(crate) fn new(val: f32) -> Float32Lang {
+        Float32Lang {
             val
         }
     }

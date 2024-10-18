@@ -32,5 +32,7 @@ pub enum Expr {
     FunctionCall(String, Vec<Expr>, Box<Expr>),     // funcName() 1 - имя 2 - аргументы 3 - возвращаемое значение
     Group(Box<Expr>),                               // группа Expr
     Assignment(String, Box<Expr>),                  // для переменных
+    StartLZone,                                     // {
+    StartRZone,                                     // }
 }
 
