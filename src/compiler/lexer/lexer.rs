@@ -2,7 +2,7 @@ use std::iter::Peekable;
 use std::str::Chars;
 use crate::compiler::lexer::token::{LexerValueChar, LexerValueString, Token};
 
-// Функция для создания токенов
+//  function for creating token list
 pub fn tokenize(value: String) -> Vec<Token> {
     let mut tokens = Vec::new();
     let mut chars = value.chars().peekable();
@@ -23,9 +23,12 @@ pub fn tokenize(value: String) -> Vec<Token> {
             '!' => tokens.push(Token::ExclamationMark),
             '"' => tokens.push(Token::DoubleQuotes),
             '\'' => tokens.push(Token::OneQuotes),
-            '\r' | '\t' | ' ' => continue, // Игнорируем пробелы и перевод строки
+            '\r' | '\t' | ' ' => continue, // ignore space and line feed
             _ if current.is_numeric() => {
                 tokens.push(Token::Number(collect_number(&mut chars, current)));
+            },
+            _ if current.is_alphanumeric() => {
+                tokens.push(Token::Identifier(collect_identifier(&mut chars, current)));
             },
             _ if current.is_alphanumeric() => {
                 tokens.push(Token::Identifier(collect_identifier(&mut chars, current)));

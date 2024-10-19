@@ -2,23 +2,24 @@ use std::fmt::{Debug, Formatter};
 
 #[derive(Debug)]
 pub enum Token {
-    Identifier(LexerValueString), // aZ..Az | аЯ..Ая
-    Number(LexerValueString),     // 0..9
-    StartLZone,                   // {
-    StartRZone,                   // }
-    Add,                          // +
-    Subtract,                     // -
-    Multiply,                     // *
-    Slash,                        // /
-    Semicolon,                    // ;
-    Comma,                        // ,
-    Lparen,                       // (
-    Rparen,                       // )
-    Colon,                        // :
-    ExclamationMark,              // !
-    EndLine(LexerValueChar),      // \r\n | \t
-    DoubleQuotes,                 // "
-    OneQuotes                     // '
+    Identifier(LexerValueString),   // aZ..Az | аЯ..Ая
+    Number(LexerValueString),       // 0..9
+    NumberFloat(LexerValueString),  // 0.0--9.(9)
+    StartLZone,                     // {
+    StartRZone,                     // }
+    Add,                            // +
+    Subtract,                       // -
+    Multiply,                       // *
+    Slash,                          // /
+    Semicolon,                      // ;
+    Comma,                          // ,
+    Lparen,                         // (
+    Rparen,                         // )
+    Colon,                          // :
+    ExclamationMark,                // !
+    EndLine(LexerValueChar),        // \r\n | \t
+    DoubleQuotes,                   // "
+    OneQuotes                       // '
 }
 #[derive(Debug)]
 pub struct LexerValueString {

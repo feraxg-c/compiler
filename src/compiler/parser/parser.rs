@@ -1,6 +1,7 @@
 use crate::compiler::lexer::token::Token;
 use crate::compiler::parser::ast::Expr;
 
+// creating A.S. Tree from token
 fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
     // input: num, add, colon
     // output: colon, add, num
@@ -9,19 +10,28 @@ fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
 
     while let Some(current) = iter.next() {
         match current {
-            Token::Identifier(_) => {}
-            Token::Number(_) => {}
             Token::StartLZone => {
                 ast_tree.push(Expr::StartLZone)
             }
             Token::StartRZone => {
                 ast_tree.push(Expr::StartRZone)
             }
-            Token::Add => {}
-            Token::Subtract => {}
-            Token::Multiply => {}
-            Token::Slash => {}
-            Token::Semicolon => {}
+            Token::Number(val) => {
+                // if there is val.parse return true, walk next
+                if let Ok(num) = val.parse::<i64>() {
+                    ast_tree.push(Expr::Number(num));
+                }
+            }
+            Token::NumberFloat(val) => {
+                // if there is val.parse return true, walk next
+                if let Ok(num) = val.parse::<f64>() {
+                    ast_tree.push(Expr::NumberFloat(num));
+                }
+            }
+            Token::Add => {Expr::new_binary_op(&mut ast_tree, "+".to_string()); }
+            Token::Subtract => {Expr::new_binary_op(&mut ast_tree, "-".to_string()); }
+            Token::Multiply => {Expr::new_binary_op(&mut ast_tree, "*".to_string());}
+            Token::Slash => {Expr::new_binary_op(&mut ast_tree, "/".to_string());}
             Token::Comma => {}
             Token::Lparen => {}
             Token::Rparen => {}
@@ -30,6 +40,8 @@ fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
             Token::EndLine(_) => {}
             Token::DoubleQuotes => {}
             Token::OneQuotes => {}
+            Token::Semicolon => {}
+            Token::Identifier(_) => {}
         }
     }
 
