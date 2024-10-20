@@ -1,4 +1,3 @@
-use crate::compiler::lib::private::std::types::int::int8_lang::Int8Lang;
 use crate::compiler::lib::private::std::types::type_compress::TraitTypeFn;
 
 pub struct Int32Lang{

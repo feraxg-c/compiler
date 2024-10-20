@@ -25,20 +25,6 @@ typedef struct {
     size_t size; // Размер списка
 } List;
 
-// структруы для хешмапы
-typedef struct {
-    void *key;
-    size_t key_size;
-    void *value;
-    size_t value_size;
-} KeyValuePair;
-
-typedef struct {
-    KeyValuePair *pairs;
-    size_t size;
-    size_t capacity;
-} Dictionary;
-
 // Перечисление для булевых значений
 typedef enum {
     BOOL_FALSE = 0,
@@ -243,54 +229,6 @@ void freeCharLang(CharLang *cl) {
         free(cl->value); // Освобождаем память значения
         free(cl);        // Освобождаем память структуры
     }
-}
-
-// функции для хэшмап
-
-Dictionary* createDictionary(size_t initial_capacity) {
-    Dictionary *dict = malloc(sizeof(Dictionary));
-    dict->pairs = malloc(sizeof(KeyValuePair) * initial_capacity);
-    dict->size = 0;
-    dict->capacity = initial_capacity;
-    return dict;
-}
-
-void resizeDictionary(Dictionary *dict) {
-    dict->capacity *= 2;
-    dict->pairs = realloc(dict->pairs, sizeof(KeyValuePair) * dict->capacity);
-}
-
-void addToDictonary(Dictionary *dict, void *key, size_t key_size, void *value, size_t value_size) {
-    if (dict->size >= dict->capacity) {
-        resizeDictionary(dict);
-    }
-    dict->pairs[dict->size].key = malloc(key_size);
-    memcpy(dict->pairs[dict->size].key, key, key_size);
-    dict->pairs[dict->size].key_size = key_size;
-
-    dict->pairs[dict->size].value = malloc(value_size);
-    memcpy(dict->pairs[dict->size].value, value, value_size);
-    dict->pairs[dict->size].value_size = value_size;
-
-    dict->size++;
-}
-
-void* getValInDictonaryForKey(Dictionary *dict, void *key, size_t key_size) {
-    for (size_t i = 0; i < dict->size; i++) {
-        if (memcmp(dict->pairs[i].key, key, key_size) == 0) {
-            return dict->pairs[i].value;
-        }
-    }
-    return NULL;
-}
-
-void freeDictionary(Dictionary *dict) {
-    for (size_t i = 0; i < dict->size; i++) {
-        free(dict->pairs[i].key);
-        free(dict->pairs[i].value);
-    }
-    free(dict->pairs);
-    free(dict);
 }
 
 // Функция для создания списка

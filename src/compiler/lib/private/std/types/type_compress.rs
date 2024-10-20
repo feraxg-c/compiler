@@ -61,4 +61,25 @@ impl LangType{
             }
         }
     }
+
+    pub(crate) fn create_c_variable(&self, name: String) -> String {
+        match self {
+            LangType::Bool(val) => BoolLang::new(*val).create_c_variable(name),
+            LangType::Char(val) => CharLang::new(*val).create_c_variable(name),
+            LangType::String(val) => StringLang::new(val.clone()).create_c_variable(name),
+            LangType::Float32(val) => Float32Lang::new(*val).create_c_variable(name),
+            LangType::Float64(val) => Float64Lang::new(*val).create_c_variable(name),
+            LangType::Int8(val) => Int8Lang::new(*val).create_c_variable(name),
+            LangType::Int16(val) => Int16Lang::new(*val).create_c_variable(name),
+            LangType::Int32(val) => Int32Lang::new(*val).create_c_variable(name),
+            LangType::Int64(val) => Int64Lang::new(*val).create_c_variable(name),
+            LangType::UInt8(val) => IntU8Lang::new(*val).create_c_variable(name),
+            LangType::UInt16(val) => IntU16Lang::new(*val).create_c_variable(name),
+            LangType::UInt32(val) => IntU32Lang::new(*val).create_c_variable(name),
+            LangType::UInt64(val) => IntU64Lang::new(*val).create_c_variable(name),
+            _ => String::new(),  // Обработка других типов
+        }
+    }
 }
+
+

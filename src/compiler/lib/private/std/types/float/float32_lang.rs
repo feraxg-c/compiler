@@ -1,4 +1,3 @@
-use crate::compiler::lib::private::std::types::char_lang::CharLang;
 use crate::compiler::lib::private::std::types::type_compress::TraitTypeFn;
 
 pub struct Float32Lang{
@@ -14,12 +13,17 @@ impl Float32Lang {
 
 }
 
-impl TraitTypeFn for CharLang{
-    fn convert_type_to_c() -> String {
+impl TraitTypeFn for  Float32Lang {
+    fn convert_type_to_c(&self) -> String {
         "Float32".to_string()
     }
 
     fn create_c_variable(&self, name: String) -> String {
-        format!("{} {} = '{}'", Self::convert_type_to_c(), name, self.val)
+        format!(
+            "{} {} = createFloat32({})",
+            Self::convert_type_to_c(self),
+            name,
+            self.val
+        )
     }
 }
