@@ -13,11 +13,11 @@ impl CharLang {
 }
 
 impl TraitTypeFn for CharLang{
-    fn convert_type_to_c() -> String {
+    fn convert_type_to_c(&self) -> String {
         "char".to_string()
     }
 
     fn create_c_variable(&self, name: String) -> String {
-        format!("{} {} = '{}'", Self::convert_type_to_c(), name, self.val)
+        format!("{} {} = '{}'", Self::convert_type_to_c(&self), name, self.val)
     }
 }

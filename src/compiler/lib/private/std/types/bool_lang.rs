@@ -11,6 +11,14 @@ impl BoolLang {
         }
     }
 
+    pub fn convert_bool_to_int(&self) -> i8 {
+        if self.val {
+            1
+        } else {
+            0
+        }
+    }
+
 }
 
 impl TraitTypeFn for BoolLang{
@@ -19,7 +27,11 @@ impl TraitTypeFn for BoolLang{
     }
 
     fn create_c_variable(&self, name: String) -> String {
-        format!("{} {} = createBool({})", Self::convert_type_to_c(&self), name, self.val)
+        format!(
+            "{} {} = createBool({})",
+            Self::convert_type_to_c(&self),
+            name,
+            Self.convert_bool_to_int())
     }
 }
 

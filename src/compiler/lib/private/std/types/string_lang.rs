@@ -21,7 +21,11 @@ impl TraitTypeFn for StringLang{
     }
 
     fn create_c_variable(&self, name: String) -> String {
-        todo!()
+        format!(
+            "{} {} = createString({})",
+            Self::convert_type_to_c(&self),
+            name, &self.val
+        )
     }
 }
 

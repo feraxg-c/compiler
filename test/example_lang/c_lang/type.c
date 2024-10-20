@@ -3,6 +3,18 @@
 #include <string.h>
 #include <stdlib.h>
 
+// Структура для представления строки
+typedef struct {
+    char *data; // Указатель на строку
+    size_t length; // Длина строки
+} String;
+
+
+// Определение структуры
+typedef struct {
+    char *value;
+} CharLang;
+
 typedef struct ListNode {
     void *data; // Указатель на данные
     struct ListNode *next; // Указатель на следующий узел
@@ -132,12 +144,6 @@ Float64 createFloat64(double value) {
     return f;
 }
 
-// Структура для представления строки
-typedef struct {
-    char *data; // Указатель на строку
-    size_t length; // Длина строки
-} String;
-
 // Функция для создания строки
 String createString(const char *initStr) {
     String str;
@@ -197,6 +203,46 @@ Bool logicalOr(Bool a, Bool b) {
 // Функция для вывода булевого значения
 void printBool(Bool b) {
     printf("%s\n", b.value == BOOL_TRUE ? "true" : "false");
+}
+
+// Функция для создания и инициализации CharLang
+CharLang *createCharLang(const char *initial_value) {
+    CharLang *cl = (CharLang *)malloc(sizeof(CharLang));
+    if (cl == NULL) {
+        fprintf(stderr, "Ошибка: недостаточно памяти для создания CharLang.\n");
+        return NULL;
+    }
+    cl->value = strdup(initial_value); // Копируем строку в новое место
+    if (cl->value == NULL) {
+        fprintf(stderr, "Ошибка: недостаточно памяти для значения.\n");
+        free(cl);
+        return NULL;
+    }
+    return cl;
+}
+
+// Функция для изменения значения
+void setCharValue(CharLang *cl, const char *new_value) {
+    if (cl->value != NULL) {
+        free(cl->value); // Освобождаем память старого значения
+    }
+    cl->value = strdup(new_value); // Копируем новое значение
+    if (cl->value == NULL) {
+        fprintf(stderr, "Ошибка: недостаточно памяти для нового значения.\n");
+    }
+}
+
+// Функция для получения значения
+const char *getCharValue(const CharLang *cl) {
+    return cl->value;
+}
+
+// Функция для освобождения памяти
+void freeCharLang(CharLang *cl) {
+    if (cl != NULL) {
+        free(cl->value); // Освобождаем память значения
+        free(cl);        // Освобождаем память структуры
+    }
 }
 
 // функции для хэшмап
