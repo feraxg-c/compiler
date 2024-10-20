@@ -1,4 +1,4 @@
-
+use crate::compiler::lib::private::std::types::type_compress::TraitTypeFn;
 
 pub struct BoolLang{
     pub val: bool
@@ -10,12 +10,16 @@ impl BoolLang {
             val
         }
     }
-    pub fn convert_type_to_c(&self) -> String {
+
+}
+
+impl TraitTypeFn for BoolLang{
+    fn convert_type_to_c(&self) -> String {
         "Bool".to_string() // typedef struct
     }
 
-    pub fn print_boolean_value() -> String {
-        format!("printBool({})", 1)
+    fn create_c_variable(&self, name: String) -> String {
+        format!("{} {} = createBool({})", Self::convert_type_to_c(&self), name, self.val)
     }
 }
 

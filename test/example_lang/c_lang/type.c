@@ -3,6 +3,30 @@
 #include <string.h>
 #include <stdlib.h>
 
+typedef struct ListNode {
+    void *data; // Указатель на данные
+    struct ListNode *next; // Указатель на следующий узел
+} ListNode;
+
+typedef struct {
+    ListNode *head; // Указатель на первый узел
+    size_t size; // Размер списка
+} List;
+
+// структруы для хешмапы
+typedef struct {
+    void *key;
+    size_t key_size;
+    void *value;
+    size_t value_size;
+} KeyValuePair;
+
+typedef struct {
+    KeyValuePair *pairs;
+    size_t size;
+    size_t capacity;
+} Dictionary;
+
 // Перечисление для булевых значений
 typedef enum {
     BOOL_FALSE = 0,
@@ -124,6 +148,7 @@ String createString(const char *initStr) {
     }
     return str;
 }
+
 // Функция для освобождения памяти строки
 void freeString(String *str) {
     free(str->data);
@@ -174,3 +199,97 @@ void printBool(Bool b) {
     printf("%s\n", b.value == BOOL_TRUE ? "true" : "false");
 }
 
+// функции для хэшмап
+
+Dictionary* createDictionary(size_t initial_capacity) {
+    Dictionary *dict = malloc(sizeof(Dictionary));
+    dict->pairs = malloc(sizeof(KeyValuePair) * initial_capacity);
+    dict->size = 0;
+    dict->capacity = initial_capacity;
+    return dict;
+}
+
+void resizeDictionary(Dictionary *dict) {
+    dict->capacity *= 2;
+    dict->pairs = realloc(dict->pairs, sizeof(KeyValuePair) * dict->capacity);
+}
+
+void addToDictonary(Dictionary *dict, void *key, size_t key_size, void *value, size_t value_size) {
+    if (dict->size >= dict->capacity) {
+        resizeDictionary(dict);
+    }
+    dict->pairs[dict->size].key = malloc(key_size);
+    memcpy(dict->pairs[dict->size].key, key, key_size);
+    dict->pairs[dict->size].key_size = key_size;
+
+    dict->pairs[dict->size].value = malloc(value_size);
+    memcpy(dict->pairs[dict->size].value, value, value_size);
+    dict->pairs[dict->size].value_size = value_size;
+
+    dict->size++;
+}
+
+void* getValInDictonaryForKey(Dictionary *dict, void *key, size_t key_size) {
+    for (size_t i = 0; i < dict->size; i++) {
+        if (memcmp(dict->pairs[i].key, key, key_size) == 0) {
+            return dict->pairs[i].value;
+        }
+    }
+    return NULL;
+}
+
+void freeDictionary(Dictionary *dict) {
+    for (size_t i = 0; i < dict->size; i++) {
+        free(dict->pairs[i].key);
+        free(dict->pairs[i].value);
+    }
+    free(dict->pairs);
+    free(dict);
+}
+
+// Функция для создания списка
+List* createList() {
+    List *list = (List*)malloc(sizeof(List));
+    if (list == NULL) {
+        fprintf(stderr, "Failed to allocate memory for list\n");
+        exit(EXIT_FAILURE);
+    }
+    list->head = NULL;
+    list->size = 0;
+    return list;
+}
+
+// Функция для добавления элемента в конец списка
+void appendList(List *list, void *data) {
+    ListNode *new_node = (ListNode*)malloc(sizeof(ListNode));
+    if (new_node == NULL) {
+        fprintf(stderr, "Failed to allocate memory for new node\n");
+        exit(EXIT_FAILURE);
+    }
+    new_node->data = data;
+    new_node->next = NULL;
+
+    if (list->head == NULL) {
+        // Если список пуст, новый узел становится головой
+        list->head = new_node;
+    } else {
+        // Иначе добавляем узел в конец списка
+        ListNode *current = list->head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = new_node;
+    }
+    list->size++;
+}
+
+// Функция для освобождения памяти списка
+void freeList(List *list) {
+    ListNode *current = list->head;
+    while (current != NULL) {
+        ListNode *next = current->next;
+        free(current); // Освобождаем узел
+        current = next;
+    }
+    free(list); // Освобождаем сам список
+}

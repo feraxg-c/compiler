@@ -33,6 +33,7 @@ pub enum Expr {
     Assignment(String, Box<Expr>),                  // for variable
     StartLZone,                                     // {
     StartRZone,                                     // }
+    Semicolon
 }
 
 impl Expr {
@@ -51,10 +52,10 @@ impl Expr {
                     "-" => left_value - right_value,
                     "*" => left_value * right_value,
                     "/" => left_value / right_value, // добавлено деление
-                    "!=" => if left_value != right_value { 1 } else { 0 }, // не равно
-                    "==" => if left_value == right_value { 1 } else { 0 }, // равно
-                    ">" => if left_value > right_value { 1 } else { 0 }, // больше
-                    "<" => if left_value < right_value { 1 } else { 0 }, // меньше
+                    "!=" => if left_value != right_value { 1 } else { 0 }, // non equals
+                    "==" => if left_value == right_value { 1 } else { 0 }, // equals
+                    ">" => if left_value > right_value { 1 } else { 0 }, // more
+                    "<" => if left_value < right_value { 1 } else { 0 }, // small
                     _ => 0, // TODO: call error
                 }
             }

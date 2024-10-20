@@ -10,12 +10,8 @@ fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
 
     while let Some(current) = iter.next() {
         match current {
-            Token::StartLZone => {
-                ast_tree.push(Expr::StartLZone)
-            }
-            Token::StartRZone => {
-                ast_tree.push(Expr::StartRZone)
-            }
+            Token::StartLZone => {ast_tree.push(Expr::StartLZone)}
+            Token::StartRZone => {ast_tree.push(Expr::StartRZone)}
             Token::Number(val) => {
                 // if there is val.parse return true, walk next
                 if let Ok(num) = val.parse::<i64>() {
@@ -28,8 +24,8 @@ fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
                     ast_tree.push(Expr::NumberFloat(num));
                 }
             }
-            Token::Add => {Expr::new_binary_op(&mut ast_tree, "+".to_string()); }
-            Token::Subtract => {Expr::new_binary_op(&mut ast_tree, "-".to_string()); }
+            Token::Add => {Expr::new_binary_op(&mut ast_tree, "+".to_string());}
+            Token::Subtract => {Expr::new_binary_op(&mut ast_tree, "-".to_string());}
             Token::Multiply => {Expr::new_binary_op(&mut ast_tree, "*".to_string());}
             Token::Slash => {Expr::new_binary_op(&mut ast_tree, "/".to_string());}
             Token::Comma => {}
@@ -40,7 +36,7 @@ fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
             Token::EndLine(_) => {}
             Token::DoubleQuotes => {}
             Token::OneQuotes => {}
-            Token::Semicolon => {}
+            Token::Semicolon => {ast_tree.push(Expr::Semicolon)}
             Token::Identifier(_) => {}
         }
     }

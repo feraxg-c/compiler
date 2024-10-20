@@ -9,5 +9,6 @@ pub mod type_compress;
 pub mod float;
 pub mod int;
 mod uint;
+mod vec_lang;
 
 

@@ -12,6 +12,13 @@ use crate::compiler::lib::private::std::types::uint::uint32_lang::IntU32Lang;
 use crate::compiler::lib::private::std::types::uint::uint64_lang::IntU64Lang;
 use crate::compiler::lib::private::std::types::uint::uint8_lang::IntU8Lang;
 
+
+pub trait TraitTypeFn{
+    fn convert_type_to_c(&self) -> String;
+    fn create_c_variable(&self, name: String) -> String;
+
+}
+
 pub enum LangType{
     Bool(bool),
     Char(char),
@@ -20,8 +27,8 @@ pub enum LangType{
     Enum,
     None,
     Struct,
-    Float32(f64),
-    Float64(f32),
+    Float32(f32),
+    Float64(f64),
     Int8(i8),
     Int16(i16),
     Int32(i32),
@@ -39,8 +46,8 @@ impl LangType{
             LangType::Bool(val) => Box::new(BoolLang::new(val)),
             LangType::Char(val) => Box::new(CharLang::new(val)),
             LangType::String(val) => Box::new(StringLang::new(val)),
-            LangType::Float32(val) => Box::new(Float64Lang::new(val)),
-            LangType::Float64(val) => Box::new(Float32Lang::new(val)),
+            LangType::Float32(val) => Box::new(Float32Lang::new(val)),
+            LangType::Float64(val) => Box::new(Float64Lang::new(val)),
             LangType::Int8(val) => Box::new(Int8Lang::new(val)),
             LangType::Int16(val) => Box::new(Int16Lang::new(val)),
             LangType::Int32(val) => Box::new(Int32Lang::new(val)),

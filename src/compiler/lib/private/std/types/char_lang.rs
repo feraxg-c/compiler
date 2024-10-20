@@ -1,3 +1,4 @@
+use crate::compiler::lib::private::std::types::type_compress::{TraitTypeFn};
 
 pub struct CharLang {
     pub(crate) val: char
@@ -9,8 +10,14 @@ impl CharLang {
             val
         }
     }
+}
 
-    pub fn convert_type_to_c() -> String {
+impl TraitTypeFn for CharLang{
+    fn convert_type_to_c() -> String {
         "char".to_string()
+    }
+
+    fn create_c_variable(&self, name: String) -> String {
+        format!("{} {} = '{}'", Self::convert_type_to_c(), name, self.val)
     }
 }
