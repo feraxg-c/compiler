@@ -14,13 +14,13 @@ fn ast_parser(mut tokens: Vec<Token>) -> Vec<Expr> {
             Token::StartRZone => {ast_tree.push(Expr::StartRZone)}
             Token::Number(val) => {
                 // if there is val.parse return true, walk next
-                if let Ok(num) = val.parse::<i64>() {
+                if let Ok(num) = val.value.parse::<i64>() {
                     ast_tree.push(Expr::Number(num));
                 }
             }
             Token::NumberFloat(val) => {
                 // if there is val.parse return true, walk next
-                if let Ok(num) = val.parse::<f64>() {
+                if let Ok(num) = val.value.parse::<f64>() {
                     ast_tree.push(Expr::NumberFloat(num));
                 }
             }

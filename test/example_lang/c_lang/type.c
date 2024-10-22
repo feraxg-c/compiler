@@ -25,6 +25,7 @@ typedef struct {
     size_t size; // Размер списка
 } List;
 
+
 // Перечисление для булевых значений
 typedef enum {
     BOOL_FALSE = 0,
@@ -73,61 +74,129 @@ typedef struct {
 } Bool;
 
 
-// функции для создания целых чисел
-Int8 createInt8(int8_t value) {
-    Int8 c;
-    c.value = value;
-    return c;
+
+
+// Функции для создания целых чисел
+Int8* createInt8(int8_t value) {
+    Int8* c = (Int8*)malloc(sizeof(Int8)); // Выделение памяти
+    if (c != NULL) {
+        c->value = value;
+    }
+    return c; // Возврат указателя на выделенную память
 }
-Int16 createInt16(int16_t value) {
-    Int16 c;
-    c.value = value;
-    return c;
-}
-Int32 createInt32(int32_t value) {
-    Int32 c;
-    c.value = value;
-    return c;
-}
-Int64 createInt64(int64_t value) {
-    Int64 c;
-    c.value = value;
+
+Int16* createInt16(int16_t value) {
+    Int16* c = (Int16*)malloc(sizeof(Int16));
+    if (c != NULL) {
+        c->value = value;
+    }
     return c;
 }
 
-// функции для создания положительных чисел
-UInt8 createUInt8(uint8_t value) {
-    UInt8 c;
-    c.value = value;
-    return c;
-}
-UInt16 createUInt16(uint16_t value) {
-    UInt16 c;
-    c.value = value;
-    return c;
-}
-UInt32 createUInt32(uint32_t value) {
-    UInt32 c;
-    c.value = value;
-    return c;
-}
-UInt64 createUInt64(uint64_t value) {
-    UInt64 c;
-    c.value = value;
+Int32* createInt32(int32_t value) {
+    Int32* c = (Int32*)malloc(sizeof(Int32));
+    if (c != NULL) {
+        c->value = value;
+    }
     return c;
 }
 
-// функция для создания Float32
-Float32 createFloat32(float value) {
-    Float32 f;
-    f.value = value;
+Int64* createInt64(int64_t value) {
+    Int64* c = (Int64*)malloc(sizeof(Int64));
+    if (c != NULL) {
+        c->value = value;
+    }
+    return c;
+}
+
+// Функции для создания положительных целых чисел
+UInt8* createUInt8(uint8_t value) {
+    UInt8* c = (UInt8*)malloc(sizeof(UInt8));
+    if (c != NULL) {
+        c->value = value;
+    }
+    return c;
+}
+
+UInt16* createUInt16(uint16_t value) {
+    UInt16* c = (UInt16*)malloc(sizeof(UInt16));
+    if (c != NULL) {
+        c->value = value;
+    }
+    return c;
+}
+
+UInt32* createUInt32(uint32_t value) {
+    UInt32* c = (UInt32*)malloc(sizeof(UInt32));
+    if (c != NULL) {
+        c->value = value;
+    }
+    return c;
+}
+
+UInt64* createUInt64(uint64_t value) {
+    UInt64* c = (UInt64*)malloc(sizeof(UInt64));
+    if (c != NULL) {
+        c->value = value;
+    }
+    return c;
+}
+
+// Функции для создания Float32 и Float64
+Float32* createFloat32(float value) {
+    Float32* f = (Float32*)malloc(sizeof(Float32));
+    if (f != NULL) {
+        f->value = value;
+    }
     return f;
 }
-// Функция для создания Float64
-Float64 createFloat64(double value) {
-    Float64 f;
-    f.value = value;
+Float64* createFloat64(double value) {
+    Float64* f = (Float64*)malloc(sizeof(Float64));
+    if (f != NULL) {
+        f->value = value;
+    }
     return f;
+}
+
+// Функции для освобождения памяти
+void freeInt8(Int8* c) {
+    free(c);
+}
+
+void freeInt16(Int16* c) {
+    free(c);
+}
+
+void freeInt32(Int32* c) {
+    free(c);
+}
+
+void freeInt64(Int64* c) {
+    free(c);
+}
+
+void freeUInt8(UInt8* c) {
+    free(c);
+}
+
+void freeUInt16(UInt16* c) {
+    free(c);
+}
+
+void freeUInt32(UInt32* c) {
+    free(c);
+}
+
+void freeUInt64(UInt64* c) {
+    free(c);
+}
+
+void freeFloat32(Float32* f) {
+    free(f);
+}
+
+void freeFloat64(Float64* f) {
+    free(f);
 }
 
 // Функция для создания строки
@@ -166,29 +235,40 @@ int compareStrings(const String *str1, const String *str2) {
 }
 
 // Функция для создания булевого значения
-Bool createBool(const int value) {
-    Bool b;
-    b.value = (value != 0) ? BOOL_TRUE : BOOL_FALSE;
-    return b;
+Bool* createBool(const int value) {
+    Bool* b = (Bool*)malloc(sizeof(Bool)); // Выделение памяти
+    if (b != NULL) {
+        b->value = (value != 0) ? BOOL_TRUE : BOOL_FALSE;
+    }
+    return b; // Возврат указателя на выделенную память
 }
 
 // Функция для логического И двух булевых значений
-Bool logicalAnd(Bool a, Bool b) {
-    Bool result;
-    result.value = (a.value == BOOL_TRUE && b.value == BOOL_TRUE) ? BOOL_TRUE : BOOL_FALSE;
-    return result;
-}
-// Функция для логического ИЛИ двух булевых значений
-Bool logicalOr(Bool a, Bool b) {
-    Bool result;
-    result.value = (a.value == BOOL_TRUE || b.value == BOOL_TRUE) ? BOOL_TRUE : BOOL_FALSE;
-    return result;
+Bool* logicalAnd(Bool* a, Bool* b) {
+    Bool* result = (Bool*)malloc(sizeof(Bool)); // Выделение памяти для результата
+    if (result != NULL) {
+        result->value = (a->value == BOOL_TRUE && b->value == BOOL_TRUE) ? BOOL_TRUE : BOOL_FALSE;
+    }
+    return result; // Возврат указателя на результат
 }
 
+// Функция для логического ИЛИ двух булевых значений
+Bool* logicalOr(Bool* a, Bool* b) {
+    Bool* result = (Bool*)malloc(sizeof(Bool)); // Выделение памяти для результата
+    if (result != NULL) {
+        result->value = (a->value == BOOL_TRUE || b->value == BOOL_TRUE) ? BOOL_TRUE : BOOL_FALSE;
+    }
+    return result; // Возврат указателя на результат
+}
 
 // Функция для вывода булевого значения
-void printBool(Bool b) {
-    printf("%s\n", b.value == BOOL_TRUE ? "true" : "false");
+void printBool(Bool* b) {
+    printf("%s\n", b->value == BOOL_TRUE ? "true" : "false");
+}
+
+// Функция для освобождения памяти
+void freeBool(Bool* b) {
+    free(b);
 }
 
 // Функция для создания и инициализации CharLang
@@ -277,3 +357,9 @@ void freeList(List *list) {
     }
     free(list); // Освобождаем сам список
 }
+
+
+
+
+
+
