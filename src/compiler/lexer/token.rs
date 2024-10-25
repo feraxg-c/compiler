@@ -13,7 +13,7 @@ pub enum Token {
     /// }
     StartRZone,
     /// +
-    Add,
+    Plus,
     /// -
     Subtract,
     /// *

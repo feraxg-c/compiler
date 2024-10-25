@@ -11,7 +11,7 @@ pub fn tokenize(value: String) -> Vec<Token> {
         match current {
             '{' => tokens.push(Token::StartLZone),
             '}' => tokens.push(Token::StartRZone),
-            '+' => tokens.push(Token::Add),
+            '+' => tokens.push(Token::Plus),
             '-' => tokens.push(Token::Subtract),
             '*' => tokens.push(Token::Multiply),
             '/' => tokens.push(Token::Slash),
