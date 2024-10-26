@@ -12,7 +12,7 @@ pub fn tokenize(value: String) -> Vec<Token> {
             '{' => tokens.push(Token::StartLZone),
             '}' => tokens.push(Token::StartRZone),
             '+' => tokens.push(Token::Plus),
-            '-' => tokens.push(Token::Subtract),
+            '-' => tokens.push(Token::Minus),
             '*' => tokens.push(Token::Multiply),
             '/' => tokens.push(Token::Slash),
             ';' => tokens.push(Token::Semicolon),

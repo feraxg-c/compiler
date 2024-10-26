@@ -15,7 +15,7 @@ pub enum Token {
     /// +
     Plus,
     /// -
-    Subtract,
+    Minus,
     /// *
     Multiply,
     /// /
