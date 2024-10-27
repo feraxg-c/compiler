@@ -1,5 +1,6 @@
 use crate::compiler::lib::private::std::types::type_compress::{Types, Value, ValueData};
 
+#[derive(Clone)]
 pub struct LangVec{
     value: Vec<ValueData>,
     data: Types,
@@ -17,7 +18,7 @@ impl LangVec {
         if element.data_type == self.data {
             self.value.push(element.value)
         }else {
-            // TODO: call Error
+            /* TODO: call Error */
         }
     }
 

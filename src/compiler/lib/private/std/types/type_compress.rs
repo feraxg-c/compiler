@@ -10,6 +10,7 @@ use crate::compiler::lib::private::std::types::implementation::lang_ints::
     LangInt64,
     LangInt8
 };
+use crate::compiler::lib::private::std::types::implementation::lang_struct::LangStruct;
 use crate::compiler::lib::private::std::types::implementation::lang_uints::
 {
     LangUInt16,
@@ -17,9 +18,9 @@ use crate::compiler::lib::private::std::types::implementation::lang_uints::
     LangUInt64,
     LangUInt8
 };
+use crate::compiler::lib::private::std::types::implementation::lang_vec::LangVec;
 
-
-#[derive(PartialEq)]
+#[derive(PartialEq, Clone)]
 pub enum Types{
     LangStruct,
     LangBoolean,
@@ -38,17 +39,12 @@ pub enum Types{
     LangFloat32,
     LangFloat64,
 }
-
-pub struct Value {
-    pub data_type: Types,
-    pub value: ValueData,
-}
-
+#[derive(Clone)]
 pub enum ValueData{
-    LangStruct,
+    LangStruct(LangStruct),
     LangBoolean(LangBoolean),
     LangList(LangList),
-    LangVec(LangV),
+    LangVec(LangVec),
     LangString(LangString),
     LangChar(LangChar),
     LangInt8(LangInt8),
@@ -62,7 +58,16 @@ pub enum ValueData{
     LangFloat32(LangFloat32),
     LangFloat64(LangFloat64),
 }
-
+#[derive(Clone)]
+pub struct ParameterType {
+    name: String,
+    data: Types
+}
+#[derive(Clone)]
+pub struct Value {
+    pub data_type: Types,
+    pub value: ValueData,
+}
 
 
 

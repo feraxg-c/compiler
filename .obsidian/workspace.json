@@ -11,16 +11,13 @@
             "id": "03b6cb483cbbf325",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Без названия.canvas",
-                "viewState": {
-                  "x": 138,
-                  "y": -32,
-                  "zoom": 0
-                }
+                "file": "Без названия.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
+              "icon": "lucide-file",
               "title": "Без названия"
             }
           }
@@ -168,9 +165,10 @@
   },
   "active": "03b6cb483cbbf325",
   "lastOpenFiles": [
+    "Без названия.md",
+    "src/compiler/lib/private/std/io/errors/e_format.rs",
     "structuring/хорошие паттерны.md",
     "Без названия.canvas",
-    "2024-10-23.md",
-    "Без названия.md"
+    "2024-10-23.md"
   ]
 }

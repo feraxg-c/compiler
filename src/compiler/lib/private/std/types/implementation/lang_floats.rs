@@ -1,7 +1,9 @@
+#[derive(Clone)]
 pub struct LangFloat32{
     pub value: f32
 }
 
+#[derive(Clone)]
 pub struct LangFloat64{
     pub value: f64
 }

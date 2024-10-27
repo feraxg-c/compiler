@@ -1,5 +1,6 @@
 use crate::compiler::lib::private::std::types::type_compress::{Types, ValueData};
 
+#[derive(Clone)]
 pub struct LangList{
     value: Vec<ValueData>,
     data: Types,

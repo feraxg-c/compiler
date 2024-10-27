@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct LangBoolean{
     pub value: bool
 }

@@ -1,12 +1,16 @@
+#[derive(Clone)]
 pub struct LangInt8{
     pub value: i8
 }
+#[derive(Clone)]
 pub struct LangInt16{
     pub value: i16
 }
+#[derive(Clone)]
 pub struct LangInt32{
     pub value: i32
 }
+#[derive(Clone)]
 pub struct LangInt64{
     pub value: i64
 }
