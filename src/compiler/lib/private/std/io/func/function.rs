@@ -4,5 +4,7 @@ pub struct LangFunction{
     name: String,
     arg: ParameterType,
     return_type: Types,
-
 }
+
+
+
