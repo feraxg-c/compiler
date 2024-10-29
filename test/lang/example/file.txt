@@ -1,21 +1,60 @@
 
-2+23;
-{
-find;
-}
+newHelloWorldFn!(Hello)
 
-fn just(type: i32){
+fn just(type: i32)
+{
     println("{type}");
 }
 
 
-ptr "main" fn main() {
-
-}
-
-ptr "CInsert" fn sort(){
-
+fn printElement(x: T)
+{
+    println("{}", x);
 }
 
 
+fn returnElement<T>(x: T) -> T
+{
+    return x
+}
 
+
+extended "startFrom" fn main() -> i8
+{
+    Hello();
+    return 0;
+}
+
+macro newHelloWorldFn
+{
+    ($name: ident) => {
+        fn $name() -> {
+            println("Hello, world!")
+        }
+    }
+}
+
+extended "decorator"->"define"->"struct" macro createStruct
+{
+    
+}
+
+
+
+struct Msg
+{
+    packet: Bytes,
+    name:   str
+}
+
+impl Msg
+{
+    #<macro<createStruct>>
+    fn new(packet: Bytes, name: str) -> Msg{
+        Msg
+        {
+            packet,
+            name
+        }
+    }
+}

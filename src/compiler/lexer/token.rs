@@ -2,7 +2,7 @@ use std::fmt::{Debug, Formatter};
 
 #[derive(Debug)]
 pub enum Token {
-    /// aZ..Az | аЯ..Ая
+    /// aZ..Az | аЯ..Ая | yX..Xy
     Identifier(LexerValueString),
     /// 0..9
     Number(LexerValueString),
